@@ -7,38 +7,22 @@ import { AnimateIn } from "@/components/AnimateIn";
 import { Skeleton } from "@/components/ui/skeleton"; // Importar Skeleton
 
 const menuData = {
-  clasicas: [
-    { name: "Margherita", ingredients: "Salsa de tomate, mozzarella fresca, albahaca", price: "€10.50", image: "https://images.pexels.com/photos/17578197/pexels-photo-17578197.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Prosciutto", ingredients: "Salsa de tomate, mozzarella, jamón cocido", price: "€12.00", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Prosciutto_pizza_%28509128121%29.jpg/800px-Prosciutto_pizza_%28509128121%29.jpg" },
-    { name: "Quattro Formaggi", ingredients: "Mozzarella, gorgonzola, parmesano, provolone", price: "€13.50", image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2069&auto=format&fit=crop" },
-    { name: "Diavola", ingredients: "Salsa de tomate, mozzarella, salami picante", price: "€12.50", image: "https://upload.wikimedia.org/wikipedia/commons/d/df/Pizza_Diavola_at_Alby%27s_Pizza.jpg" },
-    { name: "Capricciosa", ingredients: "Salsa de tomate, mozzarella, jamón, champiñones, alcachofas", price: "€13.00", image: "https://upload.wikimedia.org/wikipedia/commons/5/55/Pizza_capricciosa%2C_Munich.jpg" },
-    { name: "Marinara", ingredients: "Salsa de tomate, ajo, orégano, aceite de oliva", price: "€9.50", image: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Pizza_marinara_%28Napoli%29.jpg" },
-  ],
-  especiales: [
-    { name: "Bella Italia", ingredients: "Mozzarella, tomate cherry, rúcula, prosciutto crudo, lascas de parmesano", price: "€15.00", image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=1935&auto=format&fit=crop" },
-    { name: "Tartufo e Funghi", ingredients: "Crema de trufa, mozzarella, champiñones portobello, aceite de trufa", price: "€16.50", image: "https://images.pexels.com/photos/4061520/pexels-photo-4061520.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Burratina", ingredients: "Salsa de tomate, burrata fresca, tomates secos, pesto", price: "€15.50", image: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Pizza_burrata.jpg" },
-    { name: "Salmone e Avocado", ingredients: "Crème fraîche, salmón ahumado, aguacate, eneldo", price: "€17.00", image: "https://images.pexels.com/photos/18298199/pexels-photo-18298199.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Nduja Calabrese", ingredients: "Salsa de tomate, mozzarella, nduja picante, cebolla caramelizada", price: "€14.50", image: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Pizza_Nduja_and_beer_at_Restaurant_Broo.jpg" },
-  ],
-  entrantes: [
-    { name: "Bruschetta Italiana", ingredients: "Tomate, albahaca, ajo y aceite de oliva sobre pan crujiente", price: "€6.50", image: "https://upload.wikimedia.org/wikipedia/commons/9/9c/Bruschetta.jpg" },
-    { name: "Burrata con Tomate", ingredients: "Burrata cremosa, tomates cherry, rúcula y reducción balsámica", price: "€8.50", image: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Burrata_di_bufala.jpg" },
-    { name: "Focaccia con Romero", ingredients: "Pan plano italiano con aceite de oliva, sal marina y romero", price: "€5.00", image: "https://upload.wikimedia.org/wikipedia/commons/6/69/Focaccia_con_rosmarino_del_giardino.jpg" },
-    { name: "Antipasto Misto", ingredients: "Selección de embutidos italianos, quesos y verduras", price: "€12.00", image: "https://upload.wikimedia.org/wikipedia/commons/3/33/Antipasto_all%27italiana.jpg" },
+  pizzas: [
+    { name: "Pizza Margarita", ingredients: "Salsa de tomate, mozzarella fresca, albahaca", price: "€10.50", image: "https://images.pexels.com/photos/428355/pexels-photo-428355.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { name: "Pizza Pepperoni", ingredients: "Salsa de tomate, mozzarella, pepperoni picante", price: "€12.00", image: "https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { name: "Pizza Cuatro Quesos", ingredients: "Mozzarella, gorgonzola, parmesano, provolone", price: "€13.50", image: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { name: "Pizza Hawaiana", ingredients: "Salsa de tomate, mozzarella, jamón, piña", price: "€12.50", image: "https://images.pexels.com/photos/1527600/pexels-photo-1527600.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { name: "Calzone Relleno", ingredients: "Pizza cerrada rellena de mozzarella, ricotta y salami", price: "€13.00", image: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Calzone.jpg" },
   ],
   postres: [
-    { name: "Tiramisù", ingredients: "El clásico postre italiano con café y mascarpone", price: "€6.00", image: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Tiramisu_dessert.jpg" },
-    { name: "Panna Cotta", ingredients: "Suave crema italiana con salsa de frutos rojos", price: "€5.50", image: "https://upload.wikimedia.org/wikipedia/commons/1/1a/Panna_cotta_with_strawberries_and_blueberries.JPG" },
-    { name: "Cannoli Siciliano", ingredients: "Crujiente pasta rellena de ricotta dulce", price: "€6.50", image: "https://upload.wikimedia.org/wikipedia/commons/d/da/Cannoli_siciliani.jpg" },
-    { name: "Gelato Artesanal", ingredients: "3 bolas de helado italiano casero", price: "€5.00", image: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1964&auto=format&fit=crop" },
+    { name: "Tiramisú Casero", ingredients: "El clásico postre italiano con café y mascarpone", price: "€6.00", image: "https://images.pexels.com/photos/29066516/pexels-photo-29066516.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { name: "Panna Cotta con Frutos del Bosque", ingredients: "Suave crema italiana con salsa de frutos rojos", price: "€5.50", image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Panna_cotta.jpg" },
+    { name: "Helado Artesanal", ingredients: "3 bolas de gelato italiano casero", price: "€5.00", image: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Gelato_al_cioccolato_e_pistacchio.jpg" },
   ],
   bebidas: [
-    { name: "Agua Mineral", ingredients: "500ml", price: "€2.50", image: "https://images.unsplash.com/photo-1553564426-7914e7413a55?q=80&w=1964&auto=format&fit=crop" },
-    { name: "Refresco", ingredients: "Coca-Cola, Fanta, Sprite", price: "€3.00", image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?q=80&w=1964&auto=format&fit=crop" },
-    { name: "Cerveza Italiana", ingredients: "Peroni, Moretti", price: "€4.00", image: "https://images.unsplash.com/photo-1617886322207-62a43f5bca3a?q=80&w=1964&auto=format&fit=crop" },
-    { name: "Vino de la Casa", ingredients: "Tinto o Blanco", price: "€5.00 / copa", image: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1c?q=80&w=1964&auto=format&fit=crop" },
+    { name: "Vino Chianti", ingredients: "Vino tinto italiano de la Toscana", price: "€5.00/copa", image: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Glass_of_red_wine.jpg" },
+    { name: "Cerveza Italiana", ingredients: "Peroni, Moretti", price: "€4.00", image: "https://images.pexels.com/photos/1672304/pexels-photo-1672304.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { name: "Refrescos", ingredients: "Coca-Cola, Fanta, Sprite, Agua", price: "€3.00", image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Soft_drinks.jpg" },
   ],
 };
 
@@ -136,28 +120,20 @@ export const Menu = () => {
           </AnimateIn>
         </div>
         <AnimateIn direction="bottom" delay={0.2}>
-          <Tabs defaultValue="clasicas" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 bg-gray-100 max-w-4xl mx-auto" aria-label="Categorías del menú">
-              <TabsTrigger value="clasicas" aria-controls="tabpanel-clasicas">Clásicas</TabsTrigger>
-              <TabsTrigger value="especiales" aria-controls="tabpanel-especiales">Especiales</TabsTrigger>
-              <TabsTrigger value="entrantes" aria-controls="tabpanel-entrantes">Entrantes</TabsTrigger>
+          <Tabs defaultValue="pizzas" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 bg-gray-100 max-w-2xl mx-auto" aria-label="Categorías del menú">
+              <TabsTrigger value="pizzas" aria-controls="tabpanel-pizzas">Pizzas</TabsTrigger>
               <TabsTrigger value="postres" aria-controls="tabpanel-postres">Postres</TabsTrigger>
               <TabsTrigger value="bebidas" aria-controls="tabpanel-bebidas">Bebidas</TabsTrigger>
             </TabsList>
-            <TabsContent value="clasicas" id="tabpanel-clasicas" role="tabpanel">
-              {renderMenuItems(menuData.clasicas)}
-            </TabsContent>
-            <TabsContent value="especiales" id="tabpanel-especiales" role="tabpanel">
-              {renderMenuItems(menuData.especiales)}
-            </TabsContent>
-            <TabsContent value="entrantes" id="tabpanel-entrantes" role="tabpanel">
-              {renderMenuItems(menuData.entrantes)}
+            <TabsContent value="pizzas" id="tabpanel-pizzas" role="tabpanel">
+              {renderMenuItems(menuData.pizzas)}
             </TabsContent>
             <TabsContent value="postres" id="tabpanel-postres" role="tabpanel">
               {renderMenuItems(menuData.postres)}
             </TabsContent>
             <TabsContent value="bebidas" id="tabpanel-bebidas" role="tabpanel">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                 {menuData.bebidas.map((item, index) => (
                   <MenuItem
                     key={item.name}
