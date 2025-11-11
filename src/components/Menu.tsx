@@ -8,21 +8,21 @@ import { Skeleton } from "@/components/ui/skeleton"; // Importar Skeleton
 
 const menuData = {
   pizzas: [
-    { name: "Pizza Margarita", ingredients: "Salsa de tomate, mozzarella fresca, albahaca", price: "€10.50", image: "https://images.pexels.com/photos/428355/pexels-photo-428355.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Pizza Pepperoni", ingredients: "Salsa de tomate, mozzarella, pepperoni picante", price: "€12.00", image: "https://images.pexels.com/photos/1260968/pexels-photo-1260968.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Pizza Cuatro Quesos", ingredients: "Mozzarella, gorgonzola, parmesano, provolone", price: "€13.50", image: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Pizza Hawaiana", ingredients: "Salsa de tomate, mozzarella, jamón, piña", price: "€12.50", image: "https://images.pexels.com/photos/1527600/pexels-photo-1527600.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Calzone Relleno", ingredients: "Pizza cerrada rellena de mozzarella, ricotta y salami", price: "€13.00", image: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Calzone.jpg" },
+    { name: "Pizza Margarita", ingredients: "Salsa de tomate, mozzarella fresca, albahaca", price: "€10.50", image: "https://cdn.colombia.com/gastronomia/2011/08/25/pizza-margarita-3684.webp" },
+    { name: "Pizza Pepperoni", ingredients: "Salsa de tomate, mozzarella, pepperoni picante", price: "€12.00", image: "https://e-leclerc.es/wp-content/uploads/2025/02/Firefly-Pizza-de-Pepperoni-Champinones-y-Albahaca-Fresca-5245.jpg" },
+    { name: "Pizza Cuatro Quesos", ingredients: "Mozzarella, gorgonzola, parmesano, provolone", price: "€13.50", image: "https://www.novachef.es/media/images/pizza-cuatro-quesos.jpg" },
+    { name: "Pizza Hawaiana", ingredients: "Salsa de tomate, mozzarella, jamón, piña", price: "€12.50", image: "https://www.papajohns.com.pe/media/catalog/product/p/i/pizza-hawaiana.png?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700&format=jpeg" },
+    { name: "Calzone Relleno", ingredients: "Pizza cerrada rellena de mozzarella, ricotta y salami", price: "€13.00", image: "https://alicante.com.ar/wp-content/uploads/2023/12/2688_receta.jpg" },
   ],
   postres: [
-    { name: "Tiramisú Casero", ingredients: "El clásico postre italiano con café y mascarpone", price: "€6.00", image: "https://images.pexels.com/photos/29066516/pexels-photo-29066516.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Panna Cotta con Frutos del Bosque", ingredients: "Suave crema italiana con salsa de frutos rojos", price: "€5.50", image: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Panna_cotta.jpg" },
-    { name: "Helado Artesanal", ingredients: "3 bolas de gelato italiano casero", price: "€5.00", image: "https://upload.wikimedia.org/wikipedia/commons/b/bf/Gelato_al_cioccolato_e_pistacchio.jpg" },
+    { name: "Tiramisú Casero", ingredients: "El clásico postre italiano con café y mascarpone", price: "€6.00", image: "https://www.infobae.com/resizer/v2/JO2JVZL6SZGZVCJ3EOKTYNFTVE.jpg?auth=000034fa1f95a5c10ca0f6f31760967914f327256c836d5a7f3a353e3403102e&smart=true&width=992&height=566&quality=85" },
+    { name: "Panna Cotta con Frutos del Bosque", ingredients: "Suave crema italiana con salsa de frutos rojos", price: "€5.50", image: "https://canalcocina.es/medias/publicuploads/2013/12/03/114142/1k132t3qvr9t58nzcjf9.jpg" },
+    { name: "Helado Artesanal", ingredients: "3 bolas de gelato italiano casero", price: "€5.00", image: "https://fotografias.antena3.com/clipping/cmsimages01/2022/03/23/C753E5A8-CCA1-4A36-BAD4-025A130EC816/como-saber-realmente-helado-artesanal_97.jpg?crop=910,512,x58,y0&width=1600&height=900&optimize=low&format=webply" },
   ],
   bebidas: [
-    { name: "Vino Chianti", ingredients: "Vino tinto italiano de la Toscana", price: "€5.00/copa", image: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Glass_of_red_wine.jpg" },
-    { name: "Cerveza Italiana", ingredients: "Peroni, Moretti", price: "€4.00", image: "https://images.pexels.com/photos/1672304/pexels-photo-1672304.jpeg?auto=compress&cs=tinysrgb&w=800" },
-    { name: "Refrescos", ingredients: "Coca-Cola, Fanta, Sprite, Agua", price: "€3.00", image: "https://upload.wikimedia.org/wikipedia/commons/8/88/Soft_drinks.jpg" },
+    { name: "Vino Chianti", ingredients: "Vino tinto italiano de la Toscana", price: "€5.00/copa", image: "https://elsouvenir.com/wp-content/uploads/2023/02/vino-chianti-1.jpg" },
+    { name: "Cerveza Italiana", ingredients: "Peroni, Moretti", price: "€4.00", image: "https://gastronomia-italiana.es/wp-content/uploads/2021/06/portada_cerveza.jpg" },
+    { name: "Refrescos", ingredients: "Coca-Cola, Fanta, Sprite, Agua", price: "€3.00", image: "https://hips.hearstapps.com/hmg-prod/images/refrescos-portada-1653207586.jpg?crop=1.00xw:0.893xh;0,0&resize=1800:*" },
   ],
 };
 
