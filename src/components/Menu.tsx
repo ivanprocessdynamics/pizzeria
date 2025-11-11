@@ -8,8 +8,8 @@ import { Skeleton } from "@/components/ui/skeleton"; // Importar Skeleton
 
 const menuData = {
   clasicas: [
-    { name: "Margherita", ingredients: "Salsa de tomate, mozzarella fresca, albahaca", price: "€10.50", image: "https://images.pexels.com/photos/17578197/pexels-photo-17578197.jpeg" },
-    { name: "Prosciutto", ingredients: "Salsa de tomate, mozzarella, jamón cocido", price: "€12.00", image: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Prosciutto_pizza_%28509128121%29.jpg" },
+    { name: "Margherita", ingredients: "Salsa de tomate, mozzarella fresca, albahaca", price: "€10.50", image: "https://images.pexels.com/photos/17578197/pexels-photo-17578197.jpeg?auto=compress&cs=tinysrgb&w=800" },
+    { name: "Prosciutto", ingredients: "Salsa de tomate, mozzarella, jamón cocido", price: "€12.00", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Prosciutto_pizza_%28509128121%29.jpg/800px-Prosciutto_pizza_%28509128121%29.jpg" },
     { name: "Quattro Formaggi", ingredients: "Mozzarella, gorgonzola, parmesano, provolone", price: "€13.50", image: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=2069&auto=format&fit=crop" },
     { name: "Diavola", ingredients: "Salsa de tomate, mozzarella, salami picante", price: "€12.50", image: "https://upload.wikimedia.org/wikipedia/commons/d/df/Pizza_Diavola_at_Alby%27s_Pizza.jpg" },
     { name: "Capricciosa", ingredients: "Salsa de tomate, mozzarella, jamón, champiñones, alcachofas", price: "€13.00", image: "https://upload.wikimedia.org/wikipedia/commons/5/55/Pizza_capricciosa%2C_Munich.jpg" },
@@ -17,9 +17,9 @@ const menuData = {
   ],
   especiales: [
     { name: "Bella Italia", ingredients: "Mozzarella, tomate cherry, rúcula, prosciutto crudo, lascas de parmesano", price: "€15.00", image: "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=1935&auto=format&fit=crop" },
-    { name: "Tartufo e Funghi", ingredients: "Crema de trufa, mozzarella, champiñones portobello, aceite de trufa", price: "€16.50", image: "https://images.pexels.com/photos/4061520/pexels-photo-4061520.jpeg" },
+    { name: "Tartufo e Funghi", ingredients: "Crema de trufa, mozzarella, champiñones portobello, aceite de trufa", price: "€16.50", image: "https://images.pexels.com/photos/4061520/pexels-photo-4061520.jpeg?auto=compress&cs=tinysrgb&w=800" },
     { name: "Burratina", ingredients: "Salsa de tomate, burrata fresca, tomates secos, pesto", price: "€15.50", image: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Pizza_burrata.jpg" },
-    { name: "Salmone e Avocado", ingredients: "Crème fraîche, salmón ahumado, aguacate, eneldo", price: "€17.00", image: "https://images.pexels.com/photos/18298199/pexels-photo-18298199.jpeg" },
+    { name: "Salmone e Avocado", ingredients: "Crème fraîche, salmón ahumado, aguacate, eneldo", price: "€17.00", image: "https://images.pexels.com/photos/18298199/pexels-photo-18298199.jpeg?auto=compress&cs=tinysrgb&w=800" },
     { name: "Nduja Calabrese", ingredients: "Salsa de tomate, mozzarella, nduja picante, cebolla caramelizada", price: "€14.50", image: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Pizza_Nduja_and_beer_at_Restaurant_Broo.jpg" },
   ],
   entrantes: [
