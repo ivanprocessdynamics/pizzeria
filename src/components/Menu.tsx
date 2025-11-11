@@ -37,7 +37,12 @@ const menuData = {
 };
 
 interface MenuItemProps {
-  item: typeof menuData.clasicas[0];
+  item: {
+    name: string;
+    ingredients: string;
+    price: string;
+    image: string;
+  };
   isFlipped: boolean;
   onFlip: () => void;
   delay: number;
