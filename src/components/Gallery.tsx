@@ -37,7 +37,7 @@ export const Gallery = () => {
             <p className="text-lg text-gray-600 mt-2">Un vistazo a nuestra casa</p>
           </AnimateIn>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {images.map((src, index) => (
             <AnimateIn key={index} direction="bottom" delay={0.1 * index}>
               <motion.div style={{ y: yTransforms[index % yTransforms.length] }} className="overflow-hidden rounded-lg shadow-lg relative h-full w-full">
