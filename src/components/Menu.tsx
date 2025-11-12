@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnimateIn } from "@/components/AnimateIn";
@@ -12,13 +11,13 @@ const menuData = {
     { name: "Pizza Margarita", ingredients: "Salsa de tomate, mozzarella fresca, albahaca", price: "€10.50", image: "https://cdn.colombia.com/gastronomia/2011/08/25/pizza-margarita-3684.webp", priority: true },
     { name: "Pizza Pepperoni", ingredients: "Salsa de tomate, mozzarella, pepperoni picante", price: "€12.00", image: "https://e-leclerc.es/wp-content/uploads/2025/02/Firefly-Pizza-de-Pepperoni-Champinones-y-Albahaca-Fresca-5245.jpg?w=400&quality=60", priority: true },
     { name: "Pizza Cuatro Quesos", ingredients: "Mozzarella, gorgonzola, parmesano, provolone", price: "€13.50", image: "https://www.novachef.es/media/images/pizza-cuatro-quesos.jpg", priority: true },
-    { name: "Pizza Hawaiana", ingredients: "Salsa de tomate, mozzarella, jamón, piña", price: "€12.50", image: "https://www.papajohns.com.pe/media/catalog/product/p/i/pizza-hawaiana.png?optimize=high&bg-color=255,255,255&fit=bounds&height=300&width=300&canvas=300:300&format=jpeg", priority: false },
-    { name: "Calzone Relleno", ingredients: "Pizza cerrada rellena de mozzarella, ricotta y salami", price: "€13.00", image: "https://alicante.com.ar/wp-content/uploads/2023/12/2688_receta.jpg", priority: false },
+    { name: "Pizza Hawaiana", ingredients: "Salsa de tomate, mozzarella, jamón, piña", price: "€12.50", image: "https://www.papajohns.com.pe/media/catalog/product/p/i/pizza-hawaiana.png?optimize=high&bg-color=255,255,255&fit=bounds&height=300&width=300&canvas=300:300&format=jpeg", priority: true },
+    { name: "Calzone Relleno", ingredients: "Pizza cerrada rellena de mozzarella, ricotta y salami", price: "€13.00", image: "https://alicante.com.ar/wp-content/uploads/2023/12/2688_receta.jpg", priority: true },
   ],
   postres: [
     { name: "Tiramisú Casero", ingredients: "El clásico postre italiano con café y mascarpone", price: "€6.00", image: "https://www.infobae.com/resizer/v2/JO2JVZL6SZGZVCJ3EOKTYNFTVE.jpg?auth=000034fa1f95a5c10ca0f6f31760967914f327256c836d5a7f3a353e3403102e&smart=true&width=400&height=250&quality=70", priority: false },
     { name: "Panna Cotta con Frutos del Bosque", ingredients: "Suave crema italiana con salsa de frutos rojos", price: "€5.50", image: "https://canalcocina.es/medias/publicuploads/2013/12/03/114142/1k132t3qvr9t58nzcjf9.jpg", priority: false },
-    { name: "Helado Artesanal", ingredients: "3 bolas de gelato italiano casero", price: "€5.00", image: "https://fotografias.antena3.com/clipping/cmsimages01/2022/03/23/C753E5A8-CCA1-4A36-BAD4-025A130EC816/como-saber-realmente-helado-artesanal_97.jpg?crop=910,512,x58,y0&width=400&height=225&optimize=high&format=webply", priority: false },
+    { name: "Helado Artesanal", ingredients: "3 bolas de gelato italiano casero", price: "€5.00", image: "https://fotografias.antena3.com/clipping/cmsimages01/2022/03/23/C753E5A8-CCA1-4A36-BAD4-025A130EC816/como-saber-realmente-helado-artesanal_97.jpg?crop=910,512,x58,y0&width=400&height=225&optimize=high&format=webp", priority: false },
   ],
   bebidas: [
     { name: "Vino Chianti", ingredients: "Vino tinto italiano de la Toscana", price: "€5.00/copa", image: "https://elsouvenir.com/wp-content/uploads/2023/02/vino-chianti-1.jpg", priority: false },
@@ -26,6 +25,22 @@ const menuData = {
     { name: "Refrescos", ingredients: "Coca-Cola, Fanta, Sprite, Agua", price: "€3.00", image: "https://hips.hearstapps.com/hmg-prod/images/refrescos-portada-1653207586.jpg?crop=1.00xw:0.893xh;0,0&resize=400:*", priority: false },
   ],
 };
+
+// Optimiza y proxy-a imágenes de hosts lentos o que bloquean hotlinking
+const optimizeImageSrc = (url: string) => {
+  try {
+    const u = new URL(url);
+    const heavyHosts = ["www.papajohns.com.pe", "alicante.com.ar"];
+    if (heavyHosts.includes(u.hostname)) {
+      return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=700&h=525&fit=cover&output=webp`;
+    }
+    return url;
+  } catch {
+    return url;
+  }
+};
+
+const FALLBACK_IMG = "https://placehold.co/700x525?text=Imagen";
 
 interface MenuItemProps {
   item: {
@@ -42,6 +57,7 @@ interface MenuItemProps {
 
 const MenuItem: React.FC<MenuItemProps> = ({ item, isFlipped, onFlip, delay }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const src = optimizeImageSrc(item.image);
 
   return (
     <AnimateIn direction="bottom" delay={delay}>
@@ -53,13 +69,22 @@ const MenuItem: React.FC<MenuItemProps> = ({ item, isFlipped, onFlip, delay }) =
           <div className="absolute w-full h-full [backface-visibility:hidden] rounded-lg overflow-hidden shadow-lg">
             {!imageLoaded && <Skeleton className="w-full h-full" />}
             <img
-              src={item.image}
+              src={src}
               alt={item.name}
               className={`w-full h-full object-cover ${imageLoaded ? 'block' : 'hidden'}`}
               onLoad={() => setImageLoaded(true)}
               loading={item.priority ? "eager" : "lazy"}
               decoding="async"
               fetchPriority={item.priority ? "high" : "auto"}
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                // Evitar bucles infinitos de error
+                const img = e.currentTarget as HTMLImageElement;
+                if (img.src !== FALLBACK_IMG) {
+                  img.src = FALLBACK_IMG;
+                }
+                setImageLoaded(true);
+              }}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
               <h3 className="text-2xl font-bold">{item.name}</h3>
@@ -98,7 +123,9 @@ export const Menu = () => {
     });
   };
 
-  const renderMenuItems = (category: typeof menuData.clasicas) => (
+  const renderMenuItems = (
+  category: Array<{ name: string; ingredients: string; price: string; image: string; priority?: boolean }>
+) => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
       {category.map((item, index) => (
         <MenuItem
