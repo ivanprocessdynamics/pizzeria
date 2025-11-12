@@ -10,7 +10,7 @@ export const Gallery = () => {
     "https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=1935&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2070&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1579751626657-72bc17c154f1?q=80&w=1974&auto=format&fit=crop",
+    "https://plus.unsplash.com/premium_photo-1674147605306-7192b6208609?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDN8fHJlc3RhdXJhbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=600",
   ];
 
   const ref = useRef(null);
