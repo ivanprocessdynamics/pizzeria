@@ -11,6 +11,8 @@ export const Gallery = () => {
     "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2070&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1974&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1579751626657-72bc17c154f1?q=80&w=1974&auto=format&fit=crop",
+    "https://www.istockphoto.com/photo/dolly-shot-close-up-of-nice-dining-chair-with-wooden-table-and-dish-sets-interior-gm1454811153-490341654?utm_source=pexels&utm_medium=affiliate&utm_campaign=sponsored_photo&utm_content=srp_inline_portrait_media&utm_term=restaurant",
+    "https://www.istockphoto.com/photo/empty-rustic-design-restaurant-with-wooden-furniture-and-some-decorative-plants-gm1343182422-422093007?utm_source=pexels&utm_medium=affiliate&utm_campaign=sponsored_photo&utm_content=srp_inline_portrait_media&utm_term=restaurant",
   ];
 
   const ref = useRef(null);
@@ -56,15 +58,33 @@ interface ImageWithSkeletonProps {
   alt: string;
 }
 
-const optimizeImageSrc = (url: string) => {
+const normalizeIstockPageToMedia = (url: string) => {
   try {
     const u = new URL(url);
-    const heavyHosts = ["images.unsplash.com", "images.pexels.com"];
-    if (heavyHosts.includes(u.hostname)) {
-      const hostPath = `${u.hostname}${u.pathname}${u.search}`;
-      return `https://wsrv.nl/?url=${hostPath}&w=800&h=800&fit=cover&output=webp`;
+    if (u.hostname.includes("istockphoto.com") && u.pathname.includes("/photo/")) {
+      const m = u.pathname.match(/\/photo\/([^/]+)-gm(\d+)/i);
+      if (m) {
+        const slug = m[1];
+        const id = m[2];
+        return `https://media.istockphoto.com/id/${id}/photo/${slug}.jpg?b=1&s=612x612&w=0&k=20`;
+      }
     }
     return url;
+  } catch {
+    return url;
+  }
+};
+
+const optimizeImageSrc = (url: string) => {
+  try {
+    const normalized = normalizeIstockPageToMedia(url);
+    const u = new URL(normalized);
+    const heavyHosts = ["images.unsplash.com", "images.pexels.com", "media.istockphoto.com", "www.istockphoto.com"];
+    if (heavyHosts.includes(u.hostname)) {
+      const encoded = encodeURIComponent(normalized);
+      return `https://wsrv.nl/?url=${encoded}&w=800&h=800&fit=cover&output=webp`;
+    }
+    return normalized;
   } catch {
     return url;
   }
