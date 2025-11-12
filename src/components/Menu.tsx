@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AnimateIn } from "@/components/AnimateIn";
@@ -30,9 +30,10 @@ const menuData = {
 const optimizeImageSrc = (url: string) => {
   try {
     const u = new URL(url);
-    const heavyHosts = ["www.papajohns.com.pe", "alicante.com.ar"];
+    const heavyHosts = ["www.papajohns.com.pe", "alicante.com.ar"]; // hosts que responden lento o con hotlinking
     if (heavyHosts.includes(u.hostname)) {
-      return `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=700&h=525&fit=cover&output=webp`;
+      const hostPath = `${u.hostname}${u.pathname}${u.search}`; // quitar esquema para wsrv.nl
+      return `https://wsrv.nl/?url=${hostPath}&w=700&h=525&fit=cover&output=webp`;
     }
     return url;
   } catch {
@@ -57,7 +58,31 @@ interface MenuItemProps {
 
 const MenuItem: React.FC<MenuItemProps> = ({ item, isFlipped, onFlip, delay }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState<string>(FALLBACK_IMG);
   const src = optimizeImageSrc(item.image);
+
+  useEffect(() => {
+    let cancelled = false;
+    // Preload real image while mostramos placeholder al instante
+    const pre = new Image();
+    pre.referrerPolicy = "no-referrer";
+    pre.onload = () => {
+      if (!cancelled) {
+        setCurrentSrc(src);
+        setImageLoaded(true);
+      }
+    };
+    pre.onerror = () => {
+      if (!cancelled) {
+        setCurrentSrc(FALLBACK_IMG);
+        setImageLoaded(true);
+      }
+    };
+    pre.src = src;
+    return () => {
+      cancelled = true;
+    };
+  }, [src]);
 
   return (
     <AnimateIn direction="bottom" delay={delay}>
@@ -67,16 +92,16 @@ const MenuItem: React.FC<MenuItemProps> = ({ item, isFlipped, onFlip, delay }) =
         >
           {/* Front */}
           <div className="absolute w-full h-full [backface-visibility:hidden] rounded-lg overflow-hidden shadow-lg">
-            {!imageLoaded && <Skeleton className="w-full h-full" />}
+            {!imageLoaded && currentSrc !== FALLBACK_IMG && <Skeleton className="w-full h-full" />}
             <img
-              src={src}
+              src={currentSrc}
               alt={item.name}
-              className={`w-full h-full object-cover ${imageLoaded ? 'block' : 'hidden'}`}
-              onLoad={() => setImageLoaded(true)}
+              className="w-full h-full object-cover"
               loading={item.priority ? "eager" : "lazy"}
               decoding="async"
               fetchPriority={item.priority ? "high" : "auto"}
               referrerPolicy="no-referrer"
+              onLoad={() => setImageLoaded(true)}
               onError={(e) => {
                 // Evitar bucles infinitos de error
                 const img = e.currentTarget as HTMLImageElement;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { AnimateIn } from "@/components/AnimateIn";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Skeleton } from "@/components/ui/skeleton"; // Importar Skeleton
@@ -56,18 +56,47 @@ interface ImageWithSkeletonProps {
   alt: string;
 }
 
+const optimizeImageSrc = (url: string) => {
+  try {
+    const u = new URL(url);
+    const heavyHosts = ["images.unsplash.com", "images.pexels.com"];
+    if (heavyHosts.includes(u.hostname)) {
+      const hostPath = `${u.hostname}${u.pathname}${u.search}`;
+      return `https://wsrv.nl/?url=${hostPath}&w=800&h=800&fit=cover&output=webp`;
+    }
+    return url;
+  } catch {
+    return url;
+  }
+};
+
+const FALLBACK_IMG = "https://placehold.co/800x800?text=Imagen";
+
 const ImageWithSkeleton: React.FC<ImageWithSkeletonProps> = ({ src, alt }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState<string>(FALLBACK_IMG);
+  const optimized = optimizeImageSrc(src);
+
+  useEffect(() => {
+    let cancelled = false;
+    const pre = new Image();
+    pre.referrerPolicy = "no-referrer";
+    pre.onload = () => { if (!cancelled) { setCurrentSrc(optimized); setImageLoaded(true); } };
+    pre.onerror = () => { if (!cancelled) { setCurrentSrc(FALLBACK_IMG); setImageLoaded(true); } };
+    pre.src = optimized;
+    return () => { cancelled = true; };
+  }, [optimized]);
 
   return (
     <div className="relative w-full h-full aspect-square">
       {!imageLoaded && <Skeleton className="absolute inset-0 w-full h-full" />}
       <img
-        src={src}
+        src={currentSrc}
         alt={alt}
         className={`w-full h-full object-cover transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-        onLoad={() => setImageLoaded(true)}
         loading="lazy"
+        decoding="async"
+        referrerPolicy="no-referrer"
       />
     </div>
   );
